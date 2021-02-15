@@ -92,4 +92,4 @@ WHERE book_name REGEXP '([0-9].*){3,}';
 -- 20
 SELECT *
 FROM books
-WHERE book_name REGEXP '([0-9].*){5}' AND book_name NOT REGEXP '([0-9].*){6}';
+WHERE book_name REGEXP '([0-9].*){5}' AND book_name NOT REGEXP '([0-9].*){6,}';
