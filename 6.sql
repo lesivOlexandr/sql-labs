@@ -107,7 +107,6 @@ LEFT JOIN book_themes
 LEFT JOIN formats
   ON formats.id = books.format;
 
--- 11
 SELECT
   books.*,
   publishers.name as publisher_name,
@@ -125,10 +124,17 @@ RIGHT JOIN book_themes
 RIGHT JOIN formats
   ON formats.id = books.format;
 
--- 12
-SELECT b.book_name as 1_book_name, b2.book_name 2_book_name FROM books b
+-- 11
+SELECT DISTINCT b.book_name as 1_book_name, b2.book_name 2_book_name FROM books b
 JOIN books b2
   ON b.pages_count = b2.pages_count AND b.n != b2.n;
+
+-- 12
+SELECT DISTINCT b.book_name as 1_book_name, b2.book_name 2_book_name, b3.book_name 3_book_name FROM books b
+  JOIN books b2
+    ON b.price = b2.price AND b.n != b2.n
+  JOIN books b3
+    ON b.price = b3.price AND b.n != b3.n;
 
 -- 13
 SELECT * from books 
@@ -153,7 +159,7 @@ SELECT *
 FROM books
 WHERE EXISTS (SELECT * FROM publishers WHERE publishers.name = 'BHV С.-Петербург' AND publishers.id = books.publisher_id);
 
--- 18
+-- 18 - it's always will be an empty set
 SELECT *
 FROM books
 WHERE 
