@@ -174,10 +174,10 @@ ORDER BY name;
   )
   UNION
   (
-    SELECT DISTINCT REGEXP_SUBSTR(TRIM(name), '^[^\\s]+')
+    SELECT DISTINCT REGEXP_SUBSTR(TRIM(name), '^[^\\s]+') as name
     FROM book_categories
     WHERE name NOT IN (
-      SELECT DISTINCT REGEXP_SUBSTR(TRIM(book_name), '^[^\\s]+') as name
+      SELECT DISTINCT REGEXP_SUBSTR(TRIM(book_name), '^[^\\s]+')
     FROM books)
   )
 )
